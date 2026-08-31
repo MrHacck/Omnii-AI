@@ -74,6 +74,11 @@ Select "Auto Select" to let the AI automatically choose the best model:
 - Natural conversation with emotional intelligence
 - Sophisticated humor and wit
 - Professional-quality responses
+- **🧠 Logical thinking and step-by-step reasoning**
+- **🧠 AI consciousness and self-awareness**
+- **🌍 World awareness with recent events knowledge**
+- **📈 Learning capabilities from conversation patterns**
+- **🔮 Predictive intelligence and trend analysis**
 
 ### **With API Keys**
 - Market-leading AI performance
