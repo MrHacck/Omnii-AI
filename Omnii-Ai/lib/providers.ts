@@ -835,7 +835,7 @@ What cosmic topic would you like me to explain in more detail?`;
 - Sustainability influencing business decisions
 
 What specific domain's recent developments would you like me to explore in detail?`;
-  }
+}
 
 function isOfficeWorkQuestion(message: string): boolean {
   const officeKeywords = [
