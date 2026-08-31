@@ -1,6 +1,20 @@
 # Omni AI - Market-Leading AI Assistant
 
-A sophisticated AI assistant with multi-provider support, advanced local intelligence, and a beautiful futuristic interface.
+## 🌟 About Omni AI
+
+Omni AI is a revolutionary AI assistant designed to stand alone like a lone wolf and give all market-leading AI a toe-to-toe battle. Created by the innovative **Mr.Hack team**, led by the visionary **Dhruv**, this AI assistant represents the cutting edge of artificial intelligence technology.
+
+**What Makes Omni AI Special:**
+
+- **🚀 Market-Leading Performance**: Competes directly with the best AI assistants worldwide
+- **🧠 Advanced Intelligence**: Sophisticated logical thinking, AI consciousness, and self-awareness
+- **🌍 World Awareness**: Real-time learning from recent events, technology, research, and discoveries
+- **🎨 Heavenly Interface**: Futuristic, clean, sleek design with 3D visual effects and ethereal aesthetics
+- **💫 Self-Contained**: Works perfectly without any API keys while offering premium capabilities
+- **🤖 Mr.Hack Team Excellence**: Built by innovators who believe in pushing boundaries
+
+**The Vision:**
+Omni AI is designed to be the ultimate AI companion - intelligent, fast, friendly, and visually stunning. It doesn't just respond; it understands, learns, and evolves with each conversation, providing a truly personalized experience that rivals the best in the industry.
 
 ## 🚀 Features
 
@@ -117,6 +131,25 @@ MIT License - Feel free to use this project for any purpose.
 
 This project is maintained by the Mr.Hack team.
 
+## 👨‍💻 About the Mr.Hack Team
+
+**Mr.Hack Team** is a group of innovative technology enthusiasts and developers dedicated to pushing the boundaries of artificial intelligence. Led by **Dhruv**, the team creates cutting-edge solutions that combine advanced technology with beautiful design.
+
+**About Dhruv:**
+- **Visionary Leader**: Dhruv is the creative mind and driving force behind Omni AI
+- **Technology Enthusiast**: Passionate about AI, innovation, and creating market-leading products
+- **Innovator**: Always exploring new technologies and pushing boundaries
+- **Quality Focused**: Believes in delivering excellence in every project
+- **Forward Thinker**: Sees the future of AI and builds it today
+
+**The Mr.Hack Philosophy:**
+- Innovation over imitation
+- Quality over shortcuts
+- Excellence in every detail
+- AI that truly serves humanity
+- Beautiful interfaces for powerful technology
+
 ---
 
 **Omni AI - Where Intelligence Meets Beauty** ✨
+**Created by the Mr.Hack Team - Led by Dhruv** 🚀
