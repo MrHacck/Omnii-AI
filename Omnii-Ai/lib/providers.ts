@@ -511,10 +511,10 @@ function isRecentWorldEventRequest(message: string): boolean {
     /recent|latest|today|this week|this month|current|now/i,
     /news|breaking|just happened|trending|viral/i,
     /new discovery|latest research|recent study|current events/i,
-    /what's new|what's happening|latest developments/recent updates/i,
+    /what's new|what's happening|latest developments|recent updates/i,
     /tech news|study|research|discovery|announcement/i,
     /outer space|space news|astronomy|cosmic events/i,
-    /world events|global situation|international news/recent activities/i
+    /world events|global situation|international news|recent activities/i
   ];
   return recentKeywords.some(keyword => keyword.test(message));
 }
@@ -835,6 +835,20 @@ What cosmic topic would you like me to explain in more detail?`;
 - Sustainability influencing business decisions
 
 What specific domain's recent developments would you like me to explore in detail?`;
+  }
+  
+  // Default response for recent events
+  return `I can provide information about recent developments in various domains including technology, science, space exploration, global events, and cultural trends. 
+
+To give you the most relevant information, could you specify which area you're interested in:
+- Technology and AI developments
+- Scientific research and discoveries
+- Space exploration and astronomy
+- Global events and news
+- Cultural and social trends
+- Economic and business developments
+
+What specific area of recent events would you like to know about?`;
 }
 
 function isOfficeWorkQuestion(message: string): boolean {
