@@ -1,18 +1,5 @@
 {
-  "name": "omni-ai",
-  "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/next"
-    }
-  ],
-  "env": {
-    "GEMINI_API_KEY": "@gemini-api-key",
-    "GROQ_API_KEY": "@groq-api-key",
-    "OPENROUTER_API_KEY": "@openrouter-api-key",
-    "MISTRAL_API_KEY": "@mistral-api-key",
-    "OPENAI_API_KEY": "@openai-api-key",
-    "XAI_API_KEY": "@xai-api-key"
-  }
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "framework": "nextjs"
 }
