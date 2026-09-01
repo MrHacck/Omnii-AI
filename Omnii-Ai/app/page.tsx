@@ -8,11 +8,16 @@ type Tab = "chat" | "images" | "settings";
 type SpeechRecognitionLike = {
   lang: string;
   interimResults: boolean;
-  onresult: ((e: { results: { [i: number]: { [j: number]: { transcript: string } } } }) => void) | null;
+  onresult: ((e: any) => void) | null;
   onend: (() => void) | null;
   start: () => void;
   stop: () => void;
 };
+
+type InputEvent = React.ChangeEvent<HTMLInputElement>;
+type SelectEvent = React.ChangeEvent<HTMLSelectElement>;
+type KeyboardEvent = React.KeyboardEvent<HTMLInputElement>;
+type MouseEvent = React.MouseEvent<HTMLButtonElement>;
 
 export default function Home() {
   const [tab, setTab] = useState<Tab>("chat");
@@ -148,7 +153,7 @@ export default function Home() {
     rec.lang = "en-US";
     rec.interimResults = false; // Simplified for better compatibility
     
-    rec.onresult = (e: { results: { [i: number]: { [j: number]: { transcript: string } } } }) => {
+    rec.onresult = (e: any) => {
       const transcript = e.results[0][0].transcript;
       setListening(false);
       void send(transcript);
@@ -200,7 +205,7 @@ export default function Home() {
           {(["chat", "images", "settings"] as Tab[]).map((t) => (
             <button
               key={t}
-              onClick={() => setTab(t)}
+              onClick={(): void => setTab(t)}
               className={`relative px-5 py-2.5 text-sm font-medium capitalize transition-all duration-300 rounded-lg button-3d ${
                 tab === t
                   ? "bg-gradient-to-r from-violet-500 to-fuchsia-500 text-white ethereal-glow"
@@ -229,13 +234,13 @@ export default function Home() {
                 </p>
                 <div className="mt-10 flex gap-4">
                   <button
-                    onClick={() => setTab("settings")}
+                    onClick={(): void => setTab("settings")}
                     className="rounded-xl glass-strong px-6 py-3 text-sm font-medium text-white hover-lift shimmer"
                   >
                     ✨ Setup API Keys
                   </button>
                   <button
-                    onClick={() => setTab("images")}
+                    onClick={(): void => setTab("images")}
                     className="rounded-xl glass px-6 py-3 text-sm font-medium text-gray-300 hover-lift"
                   >
                     🎨 Create Images
@@ -279,7 +284,7 @@ export default function Home() {
             <div className="relative">
               <select
                 value={model}
-                onChange={(e) => setModel(e.target.value as ModelChoice)}
+                onChange={(e: SelectEvent) => setModel(e.target.value as ModelChoice)}
                 className="appearance-none rounded-xl border border-white/10 glass px-4 py-3 pr-10 text-sm font-medium text-gray-200 outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/30 transition-all cursor-pointer hover:bg-white/10 [&>option]:bg-gray-900 [&>option]:text-gray-200"
                 aria-label="Model"
               >
@@ -301,14 +306,14 @@ export default function Home() {
             <div className="flex-1 relative">
               <input
                 value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && send()}
+                onChange={(e: InputEvent) => setInput(e.target.value)}
+                onKeyDown={(e: KeyboardEvent) => e.key === "Enter" && send()}
                 placeholder="Send a message to Omni AI..."
                 className="w-full rounded-xl border border-white/10 glass px-5 py-3 pr-12 text-sm text-gray-200 placeholder-gray-500 outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/30 transition-all backdrop-blur-sm input-3d"
               />
               {input && (
                 <button
-                  onClick={() => setInput("")}
+                  onClick={(): void => setInput("")}
                   className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-200 transition-colors"
                 >
                   <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -318,7 +323,7 @@ export default function Home() {
               )}
             </div>
             <button
-              onClick={toggleMic}
+              onClick={(): void => toggleMic()}
               title="Voice input"
               className={`rounded-xl border px-4 py-3 transition-all duration-300 hover-lift ${
                 listening
@@ -339,7 +344,7 @@ export default function Home() {
             </button>
             <label className="flex items-center gap-2 text-xs text-gray-400 cursor-pointer hover:text-gray-200 transition-colors">
               <div className="relative">
-                <input type="checkbox" checked={speak} onChange={(e) => setSpeak(e.target.checked)} className="sr-only" />
+                <input type="checkbox" checked={speak} onChange={(e: InputEvent) => setSpeak((e.target as HTMLInputElement).checked)} className="sr-only" />
                 <div className={`h-6 w-10 rounded-full transition-colors ${speak ? 'bg-gradient-to-r from-violet-500 to-fuchsia-500' : 'glass'}`}>
                   <div className={`h-6 w-6 rounded-full bg-white shadow-md transition-transform ${speak ? 'translate-x-4' : 'translate-x-0'}`} />
                 </div>
@@ -347,7 +352,7 @@ export default function Home() {
               <span>Speak</span>
             </label>
             <button
-              onClick={() => send()}
+              onClick={(): void => send()}
               disabled={loading || !input.trim()}
               className="rounded-xl bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 px-5 py-3 text-sm font-medium text-white ethereal-glow hover-lift shimmer disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
             >
@@ -372,14 +377,14 @@ export default function Home() {
             <div className="flex-1 relative">
               <input
                 value={imgPrompt}
-                onChange={(e) => setImgPrompt(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && generateImage()}
+                onChange={(e: InputEvent) => setImgPrompt(e.target.value)}
+                onKeyDown={(e: KeyboardEvent) => e.key === "Enter" && generateImage()}
                 placeholder="Describe your imagination..."
                 className="w-full rounded-xl border border-white/10 glass px-5 py-4 text-sm text-gray-200 placeholder-gray-500 outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/30 transition-all backdrop-blur-sm input-3d"
               />
             </div>
             <button
-              onClick={generateImage}
+              onClick={(): void => generateImage()}
               className="rounded-xl bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 px-8 py-4 text-sm font-medium text-white ethereal-glow hover-lift shimmer"
             >
               <span className="flex items-center gap-2">
@@ -446,7 +451,7 @@ export default function Home() {
                     <input
                       type="password"
                       value={openaiKey}
-                      onChange={(e) => setOpenaiKey(e.target.value)}
+                      onChange={(e: InputEvent) => setOpenaiKey(e.target.value)}
                       placeholder="sk-..."
                       className="w-full rounded-xl border border-white/10 glass px-5 py-4 text-sm text-gray-200 placeholder-gray-500 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 transition-all backdrop-blur-sm input-3d"
                     />
@@ -462,7 +467,7 @@ export default function Home() {
                     <input
                       type="password"
                       value={geminiKey}
-                      onChange={(e) => setGeminiKey(e.target.value)}
+                      onChange={(e: InputEvent) => setGeminiKey(e.target.value)}
                       placeholder="AIza..."
                       className="w-full rounded-xl border border-white/10 glass px-5 py-4 text-sm text-gray-200 placeholder-gray-500 outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/30 transition-all backdrop-blur-sm input-3d"
                     />
@@ -478,7 +483,7 @@ export default function Home() {
                     <input
                       type="password"
                       value={grokKey}
-                      onChange={(e) => setGrokKey(e.target.value)}
+                      onChange={(e: InputEvent) => setGrokKey(e.target.value)}
                       placeholder="xai-..."
                       className="w-full rounded-xl border border-white/10 glass px-5 py-4 text-sm text-gray-200 placeholder-gray-500 outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-500/30 transition-all backdrop-blur-sm input-3d"
                     />
@@ -494,7 +499,7 @@ export default function Home() {
                     <input
                       type="password"
                       value={groqKey}
-                      onChange={(e) => setGroqKey(e.target.value)}
+                      onChange={(e: InputEvent) => setGroqKey(e.target.value)}
                       placeholder="gsk_..."
                       className="w-full rounded-xl border border-white/10 glass px-5 py-4 text-sm text-gray-200 placeholder-gray-500 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-500/30 transition-all backdrop-blur-sm input-3d"
                     />
@@ -510,7 +515,7 @@ export default function Home() {
                     <input
                       type="password"
                       value={openrouterKey}
-                      onChange={(e) => setOpenrouterKey(e.target.value)}
+                      onChange={(e: InputEvent) => setOpenrouterKey(e.target.value)}
                       placeholder="sk-or-..."
                       className="w-full rounded-xl border border-white/10 glass px-5 py-4 text-sm text-gray-200 placeholder-gray-500 outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/30 transition-all backdrop-blur-sm input-3d"
                     />
@@ -526,7 +531,7 @@ export default function Home() {
                     <input
                       type="password"
                       value={mistralKey}
-                      onChange={(e) => setMistralKey(e.target.value)}
+                      onChange={(e: InputEvent) => setMistralKey(e.target.value)}
                       placeholder="Mistral API Key"
                       className="w-full rounded-xl border border-white/10 glass px-5 py-4 text-sm text-gray-200 placeholder-gray-500 outline-none focus:border-pink-500 focus:ring-2 focus:ring-pink-500/30 transition-all backdrop-blur-sm input-3d"
                     />
@@ -536,13 +541,13 @@ export default function Home() {
 
               <div className="mt-8 flex gap-4">
                 <button
-                  onClick={saveKeys}
+                  onClick={(): void => saveKeys()}
                   className="flex-1 rounded-xl bg-gradient-to-r from-violet-600 via-purple-600 to-fuchsia-600 px-8 py-4 text-sm font-medium text-white ethereal-glow hover-lift shimmer"
                 >
                   Save Changes
                 </button>
                 <button
-                  onClick={() => {
+                  onClick={(): void => {
                     setOpenaiKey("");
                     setGeminiKey("");
                     setGrokKey("");
